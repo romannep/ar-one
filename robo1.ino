@@ -1,21 +1,21 @@
 #include <math.h>
 #include <VarSpeedServo.h>
 
-VarSpeedServo myServo2;  // left leg
+VarSpeedServo myServo2;  // left leg [0]
 
-VarSpeedServo myServo3;  // left arm
+VarSpeedServo myServo3;  // left arm [1]
 
-VarSpeedServo myServo4;  // right arm
+VarSpeedServo myServo4;  // right arm [2]
 
-VarSpeedServo myServo5;  // right leg
+VarSpeedServo myServo5;  // right leg [3]
 
-VarSpeedServo myServo6;  // left foot
+VarSpeedServo myServo6;  // left foot [4]
 
-VarSpeedServo myServo7;  // left hand
+VarSpeedServo myServo7;  // left hand [5]
 
-VarSpeedServo myServo8;  // right hand
+VarSpeedServo myServo8;  // right hand [6]
 
-VarSpeedServo myServo9;  // right foot
+VarSpeedServo myServo9;  // right foot [7]
 
 int _init[] = { 150, 200, 20, 45, 90, 90, 90, 90 };
 int _state[8];
@@ -72,11 +72,50 @@ void _doInit(int index) {
   servo.slowmove(_state[index], 60);
 }
 
+void _moveByTime(int index, int a, int timeMs) {
+
+  int newAngle = _init[index] + a;
+  int length = abs(_state[index] - newAngle);
+  float absSpeed = length * 1000 / timeMs;
+  float relSpeed = absSpeed / _anglePerSecondPerSpeedUnit;
+  int speed = round(relSpeed);
+
+  VarSpeedServo servo = _getServo(index);
+  servo.slowmove(newAngle, speed);
+  _state[index] = newAngle;
+}
+
+void leftLeg(int a, int timeMs) {
+  _moveByTime(0, a, timeMs);
+}
+void leftArm(int a, int timeMs) {
+  _moveByTime(1, a, timeMs);
+}
+void rightArm(int a, int timeMs) {
+  _moveByTime(2, a, timeMs);
+}
+void rightLeg(int a, int timeMs) {
+  _moveByTime(3, a, timeMs);
+}
+void leftFoot(int a, int timeMs) {
+  _moveByTime(4, a, timeMs);
+}
+void leftHand(int a, int timeMs) {
+  _moveByTime(5, a, timeMs);
+}
+void rightHand(int a, int timeMs) {
+  _moveByTime(6, a, timeMs);
+}
+void rightFoot(int a, int timeMs) {
+  _moveByTime(7, a, timeMs);
+}
+
+
 void setup() {
 
   for (int i = 0; i < 8; i++) {
-    VarSpeedServo servo = _getServo(index);
-    servo.attach(_getServoPin(index));
+    VarSpeedServo servo = _getServo(i);
+    servo.attach(_getServoPin(i));
     servo.detach();
   }
 
@@ -95,40 +134,6 @@ void setup() {
   pinMode(10, INPUT_PULLUP);
 }
 
-int _rightArm = _rightArmInit;
-int _leftArm = _leftArmInit;
-int _rightHand = _rightHandInit;
-
-void leftArm(int a, int speed) {
-  myServo3.slowmove(_leftArmInit - a, speed);
-}
-
-void rightArm(int a, int timeMs) {
-  int newAngle = _rightArmInit + a;
-  int length = abs(_rightArm - newAngle);
-  float absSpeed = length * 1000 / timeMs;
-  float relSpeed = absSpeed / _anglePerSecondPerSpeedUnit;
-  int speed = round(relSpeed);
-
-  myServo4.slowmove(newAngle, speed);
-  _rightArm = newAngle;
-}
-
-
-void leftLeg(int a, int speed) {
-  myServo2.slowmove(_leftLegInit - a, speed);
-}
-void rightLeg(int a, int speed) {
-  myServo5.slowmove(_rightLegInit + a, speed);
-}
-
-void leftFoot(int a, int speed) {
-  myServo6.slowmove(_leftFootInit + a, speed);
-}
-void rightFoot(int a, int speed) {
-  myServo9.slowmove(_rightFootInit - a, speed);
-}
-
 int tactMs = 1000;
 
 void loop() {
@@ -142,49 +147,51 @@ void loop() {
 
   delay(250);
 
-  rightArm(30, 200);
-  delay(200);
+  int shortMoveMs = 200;
 
-  delay(800);
-  rightArm(0, 200);
-  delay(200);
+  rightArm(30, shortMoveMs);
+  delay(shortMoveMs);
+  
+  // tact border
 
-  delay(800);
-  rightArm(30, 200);
-  delay(200);
+  delay(tactMs - shortMoveMs);
+  rightArm(0, shortMoveMs);
+  delay(shortMoveMs);
 
-  delay(800);
-  rightArm(0, 200);
-  delay(200);
+  // tact border
 
-  delay(800);
-  rightArm(30, 200);
-  delay(200);
+  delay(tactMs - shortMoveMs);
+  rightArm(30, shortMoveMs);
+  delay(shortMoveMs);
 
-  delay(800);
-  rightArm(0, 200);
-  delay(200);
+  // tact border
 
-  delay(800);
-  rightArm(30, 200);
-  delay(200);
+  delay(tactMs - shortMoveMs);
+  rightArm(0, shortMoveMs);
+  delay(shortMoveMs);
 
-  delay(800);
-  rightArm(0, 200);
-  delay(200);
+  // tact border
 
-  delay(800);
-  rightArm(30, 200);
-  delay(200);
+  delay(tactMs - shortMoveMs);
+  rightArm(30, shortMoveMs);
+  delay(shortMoveMs);
 
-  delay(800);
-  rightArm(0, 200);
-  delay(200);
-  delay(800);
-  rightArm(30, 200);
-  delay(200);
+  // tact border
+  delay(tactMs - shortMoveMs);
+  rightArm(0, shortMoveMs);
+  delay(shortMoveMs);
 
-  delay(800);
-  rightArm(0, 200);
-  delay(200);
+  // tact border
+
+  delay(tactMs - shortMoveMs);
+  rightArm(30, shortMoveMs);
+  delay(shortMoveMs);
+
+  // tact border
+
+  delay(tactMs - shortMoveMs);
+  rightArm(0, shortMoveMs);
+  delay(shortMoveMs);
+
+  // tact border
 }
