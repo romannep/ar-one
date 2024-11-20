@@ -58,9 +58,9 @@ int _getDirection(int index) {
   case 4:
     return 1;
   case 5:
-    return 1;
-  case 6:
     return -1;
+  case 6:
+    return 1;
   case 7:
     return -1;
   }
@@ -73,41 +73,83 @@ void _doInit(int index) {
 }
 
 void _moveByTime(int index, int a, int timeMs) {
-
-  int newAngle = _init[index] + a;
+  int diff = a * _getDirection(index);
+  int newAngle = _init[index] + diff;
   int length = abs(_state[index] - newAngle);
-  float absSpeed = length * 1000 / timeMs;
-  float relSpeed = absSpeed / _anglePerSecondPerSpeedUnit;
-  int speed = round(relSpeed);
+  int absSpeed = (long) length * 1000 / timeMs;
+  int speed = absSpeed / _anglePerSecondPerSpeedUnit;
 
   VarSpeedServo servo = _getServo(index);
   servo.slowmove(newAngle, speed);
   _state[index] = newAngle;
 }
+void _saySpeed(int index, int a, int timeMs) {
+  Serial.println("SS i=" + String(index) + " a=" + String(a) + " t=" + String(timeMs) + " init=" + String(_init[index]) + " state=" + String(_state[index]));
 
-void leftLeg(int a, int timeMs) {
-  _moveByTime(0, a, timeMs);
+  int diff = a * _getDirection(index);
+  int newAngle = _init[index] + diff;
+  int length = abs(_state[index] - newAngle);
+  int absSpeed = (long) length * 1000 / timeMs;
+  int speed = absSpeed / _anglePerSecondPerSpeedUnit;
+
+  _state[index] = newAngle;
+
+   Serial.println( " d=" + String(diff) + " n=" + String(newAngle) + " l=" 
+    + String(length) + " as=" + String(absSpeed) + " rs=" + String(speed));
 }
-void leftArm(int a, int timeMs) {
-  _moveByTime(1, a, timeMs);
+
+
+int shortMoveMs = 200;
+
+void legLeftS(int a) {
+  _moveByTime(3, a, shortMoveMs);
 }
-void rightArm(int a, int timeMs) {
-  _moveByTime(2, a, timeMs);
+void armLeftS(int a) {
+  _moveByTime(2, a, shortMoveMs);
 }
-void rightLeg(int a, int timeMs) {
+void armRightS(int a) {
+  _moveByTime(1, a, shortMoveMs);
+}
+void legRightS(int a) {
+  _moveByTime(0, a, shortMoveMs);
+}
+void footLeftS(int a) {
+  _moveByTime(7, a, shortMoveMs);
+}
+void handLeftS(int a) {
+  _moveByTime(6, a, shortMoveMs);
+}
+void handRightS(int a) {
+  _moveByTime(5, a, shortMoveMs);
+}
+void footRightS(int a) {
+  _moveByTime(4, a, shortMoveMs);
+}
+
+
+void legLeft(int a, int timeMs) {
   _moveByTime(3, a, timeMs);
 }
-void leftFoot(int a, int timeMs) {
-  _moveByTime(4, a, timeMs);
+void armLeft(int a, int timeMs) {
+  _moveByTime(2, a, timeMs);
 }
-void leftHand(int a, int timeMs) {
-  _moveByTime(5, a, timeMs);
+void armRight(int a, int timeMs) {
+  _moveByTime(1, a, timeMs);
 }
-void rightHand(int a, int timeMs) {
+void legRight(int a, int timeMs) {
+  _moveByTime(0, a, timeMs);
+}
+void footLeft(int a, int timeMs) {
+  _moveByTime(7, a, timeMs);
+}
+void handLeft(int a, int timeMs) {
   _moveByTime(6, a, timeMs);
 }
-void rightFoot(int a, int timeMs) {
-  _moveByTime(7, a, timeMs);
+void handRight(int a, int timeMs) {
+  _moveByTime(5, a, timeMs);
+}
+void footRight(int a, int timeMs) {
+  _moveByTime(4, a, timeMs);
 }
 
 
@@ -124,74 +166,208 @@ void setup() {
     _doInit(i);
   }
 
-  tone(A3, 1200, 100);
-  delay(100);
-  tone(A3, 2200, 100);
-  delay(100);
-  tone(A3, 3200, 100);
+  // tone(A3, 1200, 100);
+  // delay(100);
+  // tone(A3, 2200, 100);
+  // delay(100);
+  // tone(A3, 3200, 100);
   delay(1000);
   Serial.begin(9600);
   pinMode(10, INPUT_PULLUP);
 }
 
-int tactMs = 1000;
+int tactMs = 1020;
+int halfTactMs = tactMs / 2;
+
+void move1() { //short before start
+
+  // footRightS(0);
+  footLeftS(0);
+  legRightS(0);
+  legLeftS(0);
+  // handRightS(0);
+  // handLeftS(0);
+  armRightS(0);
+  armLeftS(0);
+
+
+
+  handLeft(45, shortMoveMs);
+  handRight(45, shortMoveMs);
+  footRight(15, shortMoveMs);
+  delay(shortMoveMs);
+  
+  // ^ tact start 1
+
+  delay(tactMs - shortMoveMs);
+  footRight(-15, shortMoveMs);
+  footLeft(15, shortMoveMs);
+  delay(shortMoveMs);
+
+  // ^ tact start 2
+
+  delay(tactMs - shortMoveMs);
+  footRight(0, shortMoveMs);
+  footLeft(-15, shortMoveMs);
+  handLeft(90, shortMoveMs);
+  handRight(90, shortMoveMs);
+  delay(shortMoveMs);
+
+  // tact start 3
+
+  delay(tactMs - shortMoveMs);
+  footLeft(0, shortMoveMs);
+  delay(shortMoveMs);
+
+  // tact start 4
+
+  delay(tactMs - shortMoveMs);
+  footRight(-15, shortMoveMs);
+  handLeft(45, shortMoveMs);
+  handRight(45, shortMoveMs);
+  delay(shortMoveMs);
+
+  // tact start 5
+
+  delay(tactMs - shortMoveMs);
+  footRight(15, shortMoveMs);
+  footLeft(-15, shortMoveMs);
+  delay(shortMoveMs);
+ 
+  // tact border 6
+
+  delay(tactMs - shortMoveMs);
+
+  handLeft(90, shortMoveMs);
+  handRight(90, shortMoveMs);
+  footLeft(15, shortMoveMs);
+  footRight(0, shortMoveMs);
+
+  delay(shortMoveMs);
+
+  // tact border 7
+
+  delay(tactMs - shortMoveMs);
+  footLeft(0, shortMoveMs);
+
+  delay(shortMoveMs);
+
+  // tact border 8
+
+}
+
+void move2() {
+
+  footRightS(0);
+  footLeftS(0);
+  legRightS(15);
+  legLeftS(0);
+  handRightS(0);
+  handLeftS(90);
+  armRightS(25);
+  armLeftS(0);
+
+  delay(shortMoveMs);
+
+  // tact border 1
+
+  legRightS(0);
+  delay(halfTactMs - shortMoveMs - shortMoveMs);
+  handRightS(25);
+  handLeftS(65);
+  delay(shortMoveMs);
+  
+  handRightS(0);
+  handLeftS(90);
+
+  delay(shortMoveMs);
+  
+  // half tact
+
+  handLeft(0, halfTactMs);
+  handRight(90, halfTactMs);
+  armLeft(25, halfTactMs);
+  armRight(0, halfTactMs);
+
+  delay(halfTactMs - shortMoveMs);
+  legLeftS(15);
+  delay(shortMoveMs);
+
+  // tact border 2
+
+  legLeftS(0);
+  delay(halfTactMs - shortMoveMs - shortMoveMs);
+  handLeftS(25);
+  handRightS(70);
+  delay(shortMoveMs);
+  
+  handLeftS(0);
+  handRightS(90);
+
+  delay(shortMoveMs);
+  
+  // half tact
+
+  handRight(0, halfTactMs);
+  handLeft(90, halfTactMs);
+  armRight(25, halfTactMs);
+  armLeft(0, halfTactMs);
+  delay(halfTactMs - shortMoveMs);
+  legRightS(15);
+  delay(shortMoveMs);
+
+
+  // tact border 3
+
+  legRightS(0);
+  delay(halfTactMs - shortMoveMs - shortMoveMs);
+  handRightS(25);
+  handLeftS(70);
+  delay(shortMoveMs);
+  
+  handRightS(0);
+  handLeftS(90);
+
+  delay(shortMoveMs);
+  
+  // half tact
+
+  handLeft(0, tactMs);
+  handRight(90, tactMs);
+  armLeft(25, tactMs);
+  armRight(0, tactMs);
+  delay(halfTactMs - shortMoveMs);
+  legLeftS(15);
+  delay(shortMoveMs);
+  legLeftS(0);
+
+  // tact border 4
+
+}
 
 void loop() {
 
   byte buttonState = digitalRead(10);
+  // Serial.println("tact = " + String(tactMs) + " halfTact = " + String(halfTactMs));
 
   if (buttonState != LOW) {
     return;
   }
 
-
   delay(250);
-
-  int shortMoveMs = 200;
-
-  rightArm(30, shortMoveMs);
-  delay(shortMoveMs);
-  
-  // tact border
-
+  // move2();
+  // return;
+  // 
+  move1();
   delay(tactMs - shortMoveMs);
-  rightArm(0, shortMoveMs);
-  delay(shortMoveMs);
-
-  // tact border
-
+  move2();
   delay(tactMs - shortMoveMs);
-  rightArm(30, shortMoveMs);
-  delay(shortMoveMs);
-
-  // tact border
-
+  move2();
   delay(tactMs - shortMoveMs);
-  rightArm(0, shortMoveMs);
-  delay(shortMoveMs);
-
-  // tact border
-
+  move1();
   delay(tactMs - shortMoveMs);
-  rightArm(30, shortMoveMs);
-  delay(shortMoveMs);
-
-  // tact border
+  move2();
   delay(tactMs - shortMoveMs);
-  rightArm(0, shortMoveMs);
-  delay(shortMoveMs);
+  move2();
 
-  // tact border
-
-  delay(tactMs - shortMoveMs);
-  rightArm(30, shortMoveMs);
-  delay(shortMoveMs);
-
-  // tact border
-
-  delay(tactMs - shortMoveMs);
-  rightArm(0, shortMoveMs);
-  delay(shortMoveMs);
-
-  // tact border
 }
