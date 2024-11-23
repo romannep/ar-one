@@ -17,7 +17,7 @@ VarSpeedServo myServo8;  // right hand [6]
 
 VarSpeedServo myServo9;  // right foot [7]
 
-int _init[] = { 150, 200, 20, 45, 90, 90, 90, 90 };
+int _init[] = { 145, 200, 20, 45, 90, 90, 90, 90 };
 int _state[8];
 
 float _anglePerSecondPerSpeedUnit = 2.4;
@@ -194,21 +194,21 @@ void move1() { //short before start
 
   handLeft(45, shortMoveMs);
   handRight(45, shortMoveMs);
-  footRight(15, shortMoveMs);
+  footRight(25, shortMoveMs);
   delay(shortMoveMs);
   
   // ^ tact start 1
 
   delay(tactMs - shortMoveMs);
-  footRight(-15, shortMoveMs);
-  footLeft(15, shortMoveMs);
+  footRight(-25, shortMoveMs);
+  footLeft(25, shortMoveMs);
   delay(shortMoveMs);
 
   // ^ tact start 2
 
   delay(tactMs - shortMoveMs);
   footRight(0, shortMoveMs);
-  footLeft(-15, shortMoveMs);
+  footLeft(-25, shortMoveMs);
   handLeft(90, shortMoveMs);
   handRight(90, shortMoveMs);
   delay(shortMoveMs);
@@ -222,7 +222,7 @@ void move1() { //short before start
   // tact start 4
 
   delay(tactMs - shortMoveMs);
-  footRight(-15, shortMoveMs);
+  footRight(-25, shortMoveMs);
   handLeft(45, shortMoveMs);
   handRight(45, shortMoveMs);
   delay(shortMoveMs);
@@ -230,8 +230,8 @@ void move1() { //short before start
   // tact start 5
 
   delay(tactMs - shortMoveMs);
-  footRight(15, shortMoveMs);
-  footLeft(-15, shortMoveMs);
+  footRight(25, shortMoveMs);
+  footLeft(-25, shortMoveMs);
   delay(shortMoveMs);
  
   // tact border 6
@@ -240,7 +240,7 @@ void move1() { //short before start
 
   handLeft(90, shortMoveMs);
   handRight(90, shortMoveMs);
-  footLeft(15, shortMoveMs);
+  footLeft(25, shortMoveMs);
   footRight(0, shortMoveMs);
 
   delay(shortMoveMs);
@@ -336,12 +336,307 @@ void move2() {
   handRight(90, tactMs);
   armLeft(25, tactMs);
   armRight(0, tactMs);
+
   delay(halfTactMs - shortMoveMs);
   legLeftS(15);
   delay(shortMoveMs);
   legLeftS(0);
 
   // tact border 4
+
+}
+
+void move3() {
+  
+  footRightS(0);
+  footLeftS(0);
+  legRightS(20);
+  legLeftS(0);
+  handRightS(90);
+  handLeftS(90);
+  armRightS(90);
+  armLeftS(0);
+
+  delay(shortMoveMs);
+
+  // tact border 1
+  delay(halfTactMs);
+
+  armRight(0, halfTactMs - shortMoveMs);
+  armLeft(90, halfTactMs - shortMoveMs);
+  legRight(0, halfTactMs - shortMoveMs);
+
+  delay(halfTactMs - shortMoveMs); 
+
+  armRightS(90);
+  armLeftS(0);
+  legRightS(20);
+
+  delay(shortMoveMs);
+
+  // tact border 2
+
+  armRight(0, halfTactMs - shortMoveMs);
+  armLeft(90, halfTactMs - shortMoveMs);
+  legRight(0, halfTactMs - shortMoveMs);
+
+  delay(halfTactMs - shortMoveMs);
+
+  armRightS(90);
+  armLeftS(0);
+  legRightS(20);
+
+  delay(shortMoveMs);
+
+  armRight(0, halfTactMs - shortMoveMs);
+  armLeft(90, halfTactMs - shortMoveMs);
+  legRight(0, halfTactMs - shortMoveMs);
+
+  delay(halfTactMs - shortMoveMs); 
+
+  armRightS(90);
+  armLeftS(0);
+  legRightS(20);
+
+  delay(shortMoveMs);
+
+  // tact border 3
+  delay(halfTactMs);
+
+  armRight(0, halfTactMs - shortMoveMs);
+  armLeft(90, halfTactMs - shortMoveMs);
+  legRight(0, halfTactMs - shortMoveMs);
+
+  delay(halfTactMs - shortMoveMs); 
+
+  armRightS(90);
+  armLeftS(0);
+  legRightS(20);
+
+  delay(shortMoveMs);
+
+  // tact border 4
+
+  armRight(0, halfTactMs - shortMoveMs);
+  armLeft(90, halfTactMs - shortMoveMs);
+  legRight(0, halfTactMs - shortMoveMs);
+
+  delay(halfTactMs - shortMoveMs); 
+
+  armRightS(90);
+  armLeftS(0);
+  legRightS(20);
+
+  delay(shortMoveMs);
+
+  armRight(0, halfTactMs - shortMoveMs);
+  armLeft(90, halfTactMs - shortMoveMs);
+  legRight(0, halfTactMs - shortMoveMs);
+
+  delay(halfTactMs - shortMoveMs);
+
+  armRightS(90);
+  armLeftS(0);
+  legRightS(20);
+
+  delay(shortMoveMs);
+
+  // repeat
+    // tact border 1
+  delay(halfTactMs);
+
+  armRight(0, halfTactMs - shortMoveMs);
+  armLeft(90, halfTactMs - shortMoveMs);
+  legRight(0, halfTactMs - shortMoveMs);
+
+  delay(halfTactMs - shortMoveMs); 
+
+  armRightS(90);
+  armLeftS(0);
+  legRightS(20);
+
+  delay(shortMoveMs);
+
+  // tact border 2
+
+  armRight(0, halfTactMs - shortMoveMs);
+  armLeft(90, halfTactMs - shortMoveMs);
+  legRight(0, halfTactMs - shortMoveMs);
+
+  delay(halfTactMs - shortMoveMs);
+
+  armRightS(90);
+  armLeftS(0);
+  legRightS(20);
+
+  delay(shortMoveMs);
+
+  armRight(0, halfTactMs - shortMoveMs);
+  armLeft(90, halfTactMs - shortMoveMs);
+  legRight(0, halfTactMs - shortMoveMs);
+
+  delay(halfTactMs - shortMoveMs); 
+
+  armRightS(90);
+  armLeftS(0);
+  legRightS(20);
+
+  delay(shortMoveMs);
+
+  // tact border 3
+  
+  armRightS(0);
+  armLeftS(30);
+  footLeft(-45, halfTactMs);
+
+  handLeft(40, halfTactMs/2);
+  handRight(0, halfTactMs/2);
+  delay(halfTactMs/2);
+
+  handLeft(0, halfTactMs/2);
+  handRight(40, halfTactMs/2);
+  delay(halfTactMs/2);
+
+  footLeft(0, halfTactMs);
+  armLeftS(0);
+
+  handLeft(40, halfTactMs/2);
+  handRight(0, halfTactMs/2);
+  delay(halfTactMs/2);
+
+  handLeft(0, halfTactMs/2);
+  handRight(40, halfTactMs/2);
+  delay(halfTactMs/2);
+
+  // tact border 4
+
+  armRightS(30);
+  footRight(-45, halfTactMs);
+
+  handLeft(40, halfTactMs/2);
+  handRight(0, halfTactMs/2);
+  delay(halfTactMs/2);
+
+  handLeft(0, halfTactMs/2);
+  handRight(40, halfTactMs/2);
+  delay(halfTactMs/2);
+
+  footRight(0, halfTactMs);
+  armRightS(0);
+
+  handLeft(40, halfTactMs/2);
+  handRight(0, halfTactMs/2);
+  delay(halfTactMs/2);
+
+  handLeft(0, halfTactMs/2);
+  handRight(40, halfTactMs/2);
+  delay(halfTactMs/2);
+
+}
+
+void move4() {
+
+  footRightS(0);
+  footLeftS(0);
+  legRightS(0);
+  // legLeftS(0);
+  handRightS(0);
+  handLeftS(0);
+  armRightS(0);
+  armLeftS(0);
+
+
+  legLeft(-10, halfTactMs);
+  legRight(20, halfTactMs);
+  delay(halfTactMs);
+
+  legLeft(20, halfTactMs);
+  delay(halfTactMs);
+
+  legRight(-10, halfTactMs);
+  delay(halfTactMs);
+
+  legRight(20, halfTactMs);
+  delay(halfTactMs);
+
+  //
+  
+  legLeft(-10, halfTactMs);
+  delay(halfTactMs);
+
+  legLeft(20, halfTactMs);
+  delay(halfTactMs);
+
+  legRight(-10, halfTactMs);
+  delay(halfTactMs);
+
+  legRight(20, halfTactMs);
+  delay(halfTactMs);
+
+  // 
+
+  legLeft(-10, halfTactMs);
+  delay(halfTactMs);
+
+  legLeft(20, halfTactMs);
+  delay(halfTactMs);
+
+  legRight(-10, halfTactMs);
+  delay(halfTactMs);
+
+  legRight(20, halfTactMs);
+  delay(halfTactMs);
+
+  //
+  legLeftS(0);
+  legRightS(0);
+  armRightS(0);
+  armLeftS(30);
+  footLeft(-45, halfTactMs);
+
+  handLeft(40, halfTactMs/2);
+  handRight(0, halfTactMs/2);
+  delay(halfTactMs/2);
+
+  handLeft(0, halfTactMs/2);
+  handRight(40, halfTactMs/2);
+  delay(halfTactMs/2);
+
+  footLeft(0, halfTactMs);
+  armLeftS(0);
+
+  handLeft(40, halfTactMs/2);
+  handRight(0, halfTactMs/2);
+  delay(halfTactMs/2);
+
+  handLeft(0, halfTactMs/2);
+  handRight(40, halfTactMs/2);
+  delay(halfTactMs/2);
+
+  //
+
+   armRightS(30);
+  footRight(-45, halfTactMs);
+
+  handLeft(40, halfTactMs/2);
+  handRight(0, halfTactMs/2);
+  delay(halfTactMs/2);
+
+  handLeft(0, halfTactMs/2);
+  handRight(40, halfTactMs/2);
+  delay(halfTactMs/2);
+
+  footRight(0, halfTactMs);
+  armRightS(0);
+
+  handLeft(40, halfTactMs/2);
+  handRight(0, halfTactMs/2);
+  delay(halfTactMs/2);
+
+  handLeft(0, halfTactMs/2);
+  handRight(40, halfTactMs/2);
+  delay(halfTactMs/2);
+
 
 }
 
@@ -354,9 +649,16 @@ void loop() {
     return;
   }
 
-  delay(250);
   // move2();
-  // return;
+  // delay(tactMs - shortMoveMs);
+  // move3();
+  move3();
+  move4();
+  return;
+
+
+  delay(tactMs*2 + halfTactMs);
+
   // 
   move1();
   delay(tactMs - shortMoveMs);
@@ -369,5 +671,8 @@ void loop() {
   move2();
   delay(tactMs - shortMoveMs);
   move2();
+  delay(tactMs - shortMoveMs);
+  move3();
+  move3();
 
 }
