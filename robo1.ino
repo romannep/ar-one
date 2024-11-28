@@ -652,9 +652,9 @@ void loop() {
   // move2();
   // delay(tactMs - shortMoveMs);
   // move3();
-  move3();
-  move4();
-  return;
+  // move3();
+  // move4();
+  // return;
 
 
   delay(tactMs*2 + halfTactMs);
