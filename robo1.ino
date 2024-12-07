@@ -559,6 +559,8 @@ void move3(bool prepareForNext) {
 
 void move4(bool prepareForNext) {
 
+  // one
+
   footRightS(0);
   footLeftS(0);
   // legRightS(0);
@@ -587,7 +589,7 @@ void move4(bool prepareForNext) {
   legLeftS(0);
   delay(shortMoveMs);
   // now middle position
-
+  // ...and
 
   delay(halfTactMs - shortMoveMs);
   armRightS(90);
@@ -596,6 +598,7 @@ void move4(bool prepareForNext) {
   legLeftS(25);
   delay(shortMoveMs);
   // now left position
+  // two
 
   delay(halfTactMs - shortMoveMs);
   armRightS(45);
@@ -604,6 +607,8 @@ void move4(bool prepareForNext) {
   legRightS(0);
   delay(shortMoveMs);
   // now middle
+  // ...and
+
 
   delay(halfTactMs - shortMoveMs);
   armRightS(0);
@@ -614,6 +619,7 @@ void move4(bool prepareForNext) {
   legRightS(25);
   delay(shortMoveMs);
   // now right
+  // three
 
   delay(halfTactMs - shortMoveMs);
   armRightS(15);
@@ -624,6 +630,7 @@ void move4(bool prepareForNext) {
   legLeftS(0);
   delay(shortMoveMs);
   // now middle
+  // ...and
 
   delay(halfTactMs - shortMoveMs);
   armRightS(0);
@@ -634,6 +641,7 @@ void move4(bool prepareForNext) {
   legLeftS(25);
   delay(shortMoveMs);
   // now left
+  // four
 
   delay(halfTactMs - shortMoveMs);
   armRightS(15);
@@ -644,6 +652,7 @@ void move4(bool prepareForNext) {
   legRightS(0);
   delay(shortMoveMs);
   // now middle
+  // ...and
 
   // Repeat
 
@@ -657,6 +666,7 @@ void move4(bool prepareForNext) {
   legRightS(25);
   delay(shortMoveMs);
   // now right position
+  // one
 
   delay(halfTactMs - shortMoveMs);
 
@@ -666,6 +676,7 @@ void move4(bool prepareForNext) {
   legLeftS(0);
   delay(shortMoveMs);
   // now middle position
+  // ...and
 
   delay(halfTactMs - shortMoveMs);
   armRightS(60);
@@ -674,17 +685,32 @@ void move4(bool prepareForNext) {
   legLeftS(25);
   delay(shortMoveMs);
   // now left position
+  // two
 
-  // delay(halfTactMs - shortMoveMs);
-  // armRightS(45);
-  // armLeftS(45);
+  delay(halfTactMs - shortMoveMs);
+  armRightS(45);
+  armLeftS(45);
 
-  // legRightS(0);
-  // delay(shortMoveMs);
+  legRightS(0);
+  delay(shortMoveMs);
   // now middle
 
+  // ...and
+  
+  delay(halfTactMs - shortMoveMs);
+  handRightS(90);
+  handLeftS(90);
 
-  //
+  armRightS(29);
+  armLeftS(60);
+
+  legRightS(25);
+  delay(shortMoveMs);
+  // now right position
+  // three
+
+  // !!!
+
   armRightS(0);
   armLeftS(30);
   footLeft(-45, halfTactMs);
@@ -698,6 +724,7 @@ void move4(bool prepareForNext) {
   legRight(25, halfTactMs / 2);
 
   delay(halfTactMs / 2);
+  // ...and
 
   footLeft(0, halfTactMs);
   armLeftS(0);
@@ -710,7 +737,7 @@ void move4(bool prepareForNext) {
   handRight(40, halfTactMs / 2);
   delay(halfTactMs / 2);
 
-  //
+  // four
 
   armRightS(30);
   footRight(-45, halfTactMs);
@@ -720,21 +747,18 @@ void move4(bool prepareForNext) {
   delay(halfTactMs / 2);
 
   handLeft(0, halfTactMs / 2);
+  handRight(40, halfTactMs / 2);
+  delay(halfTactMs / 2);
+  
+  // ...and
+  
   if (prepareForNext) {
     legLeft(0, halfTactMs / 2);
-    legRight(0, halfTactMs / 2);
     armLeft(0, halfTactMs / 2);
-    armRight(0, halfTactMs / 2);
     footLeft(0, halfTactMs / 2);
     footRight(0, halfTactMs / 2);
-    handRight(0, halfTactMs / 2);
-  } else {
-    handRight(40, halfTactMs / 2);
-  }
-  delay(halfTactMs / 2);
+    handLeft(0, halfTactMs / 2);
 
-
-  if (prepareForNext) {
     delay(halfTactMs - shortMoveMs);
 
     legRightS(35);
@@ -742,6 +766,10 @@ void move4(bool prepareForNext) {
     armRightS(110);
     delay(shortMoveMs);
   } else {
+    // handLeft(0, halfTactMs / 2);
+    // handRight(40, halfTactMs / 2);
+
+
     footRight(0, halfTactMs);
     armRightS(0);
 
@@ -756,6 +784,8 @@ void move4(bool prepareForNext) {
     legRightS(25);
     delay(shortMoveMs);
   }
+
+  // one
 }
 
 void move5(bool prepareForNext) {
@@ -933,7 +963,18 @@ void loop() {
   // move6(false);
   // move6(true);
   // move3(false);
+  //   delay(halfTactMs - shortMoveMs);
+  //   handRightS(90);
+  //   handLeftS(90);
 
+  //   armRightS(25);
+  //   armLeftS(60);
+
+  //   legLeftS(25);
+  //   legRightS(25);
+  //   delay(shortMoveMs);
+  // move4(false);
+  // move4(true);
   // return;
 
 
