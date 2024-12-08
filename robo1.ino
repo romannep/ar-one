@@ -696,7 +696,7 @@ void move4(bool prepareForNext) {
   // now middle
 
   // ...and
-  
+
   delay(halfTactMs - shortMoveMs);
   handRightS(90);
   handLeftS(90);
@@ -749,9 +749,9 @@ void move4(bool prepareForNext) {
   handLeft(0, halfTactMs / 2);
   handRight(40, halfTactMs / 2);
   delay(halfTactMs / 2);
-  
+
   // ...and
-  
+
   if (prepareForNext) {
     legLeft(0, halfTactMs / 2);
     armLeft(0, halfTactMs / 2);
@@ -840,6 +840,8 @@ void move5(bool prepareForNext) {
   legLeft(0, halfTactMs);
   delay(halfTactMs);
 
+  // ...and
+
   if (prepareForNext) {
     armLeft(90, halfTactMs * 3);
     armRight(90, halfTactMs * 3);
@@ -853,6 +855,8 @@ void move5(bool prepareForNext) {
     handRightS(0);
     delay(shortMoveMs);
   }
+
+  // one
 }
 
 void move6(bool prepareForNext) {
@@ -868,6 +872,7 @@ void move6(bool prepareForNext) {
     dlr = 30;
   }
   // one
+  delay(halfTactMs);
 
   // ...and
 
@@ -885,49 +890,49 @@ void move6(bool prepareForNext) {
 
   // ...and
 
-  legLeft(dll, halfTactMs/2);
-  legRight(dlr, halfTactMs/2);
-  delay(halfTactMs/2);
+  legLeft(dll, halfTactMs / 2);
+  legRight(dlr, halfTactMs / 2);
+  delay(halfTactMs / 2);
 
-  armLeft(90 + dl, halfTactMs/2);
-  armRight(90 + dr, halfTactMs/2);
-  delay(halfTactMs/2);
+  armLeft(90 + dl, halfTactMs / 2);
+  armRight(90 + dr, halfTactMs / 2);
+  delay(halfTactMs / 2);
 
   // three
-  
-  legLeft(0, halfTactMs/2);
-  legRight(0, halfTactMs/2);
-  delay(halfTactMs/2);
 
-  armLeft(90, halfTactMs/2);
-  armRight(90, halfTactMs/2);
-  delay(halfTactMs/2);
+  legLeft(0, halfTactMs / 2);
+  legRight(0, halfTactMs / 2);
+  delay(halfTactMs / 2);
+
+  armLeft(90, halfTactMs / 2);
+  armRight(90, halfTactMs / 2);
+  delay(halfTactMs / 2);
 
   // ...and
 
-  legLeft(dll, halfTactMs/2);
-  legRight(dlr, halfTactMs/2);
-  delay(halfTactMs/2);
+  legLeft(dll, halfTactMs / 2);
+  legRight(dlr, halfTactMs / 2);
+  delay(halfTactMs / 2);
 
-  armLeft(90 + dl, halfTactMs/2);
-  armRight(90 + dr, halfTactMs/2);
-  delay(halfTactMs/2);
+  armLeft(90 + dl, halfTactMs / 2);
+  armRight(90 + dr, halfTactMs / 2);
+  delay(halfTactMs / 2);
 
   // four
-  legLeft(0, halfTactMs/2);
-  legRight(0, halfTactMs/2);
-  delay(halfTactMs/2);
-  
-  armLeft(90, halfTactMs/2);
-  armRight(90, halfTactMs/2);
-  delay(halfTactMs/2);
+  legLeft(0, halfTactMs / 2);
+  legRight(0, halfTactMs / 2);
+  delay(halfTactMs / 2);
+
+  armLeft(90, halfTactMs / 2);
+  armRight(90, halfTactMs / 2);
+  delay(halfTactMs / 2);
 
   // ...and
 
   if (prepareForNext) {
     armLeft(0, halfTactMs);
     //armRight(0, halfTactMs);
-    delay(halfTactMs - shortMoveMs);
+    delay(halfTactMs);
   } else {
     armLeft(0, halfTactMs);
     armRight(0, halfTactMs);
@@ -936,7 +941,6 @@ void move6(bool prepareForNext) {
     armLeft(90, halfTactMs * 2);
     armRight(90, halfTactMs * 2);
   }
-
 }
 
 void loop() {
@@ -948,33 +952,23 @@ void loop() {
     return;
   }
 
-  // move2();
-  // delay(tactMs - shortMoveMs);
-  // move3();
-  // move3(true);
-  // move4(true);
-  
-  // delay(halfTactMs - shortMoveMs);
-  // legRightS(35);
-  // handRightS(0);
-  // armRightS(110);
-  // delay(shortMoveMs);
+  //   legLeft(0, halfTactMs / 2);
+  //   armLeft(0, halfTactMs / 2);
+  //   footLeft(0, halfTactMs / 2);
+  //   footRight(0, halfTactMs / 2);
+  //   handLeft(0, halfTactMs / 2);
+
+  //   delay(halfTactMs - shortMoveMs);
+
+  //   legRightS(35);
+  //   handRightS(0);
+  //   armRightS(110);
+  //   delay(shortMoveMs);
+
+  // move5(false);
   // move5(true);
   // move6(false);
   // move6(true);
-  // move3(false);
-  //   delay(halfTactMs - shortMoveMs);
-  //   handRightS(90);
-  //   handLeftS(90);
-
-  //   armRightS(25);
-  //   armLeftS(60);
-
-  //   legLeftS(25);
-  //   legRightS(25);
-  //   delay(shortMoveMs);
-  // move4(false);
-  // move4(true);
   // return;
 
 
