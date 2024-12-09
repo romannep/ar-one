@@ -17,7 +17,7 @@ VarSpeedServo myServo8;  // right hand [6]
 
 VarSpeedServo myServo9;  // right foot [7]
 
-int _init[] = { 145, 200, 20, 50, 90, 90, 90, 90 };
+int _init[] = { 150, 200, 20, 45, 90, 90, 90, 90 };
 int _state[8];
 
 float _anglePerSecondPerSpeedUnit = 2.4;
@@ -355,6 +355,8 @@ void move2() {
   // tact border 4
 }
 
+int legSideAngle = 15;
+
 void move3(bool prepareForNext) {
 
   footRightS(0);
@@ -542,8 +544,8 @@ void move3(bool prepareForNext) {
     armRightS(25);
     armLeftS(60);
 
-    legLeftS(25);
-    legRightS(25);
+    legLeftS(legSideAngle);
+    legRightS(legSideAngle);
     delay(shortMoveMs);
     // // now right position
   } else {
@@ -595,7 +597,7 @@ void move4(bool prepareForNext) {
   armRightS(90);
   armLeftS(5);
 
-  legLeftS(25);
+  legLeftS(legSideAngle);
   delay(shortMoveMs);
   // now left position
   // two
@@ -616,7 +618,7 @@ void move4(bool prepareForNext) {
   handRightS(45);
   handLeftS(-45);
 
-  legRightS(25);
+  legRightS(legSideAngle);
   delay(shortMoveMs);
   // now right
   // three
@@ -638,7 +640,7 @@ void move4(bool prepareForNext) {
   handRightS(-45);
   handLeftS(45);
 
-  legLeftS(25);
+  legLeftS(legSideAngle);
   delay(shortMoveMs);
   // now left
   // four
@@ -663,7 +665,7 @@ void move4(bool prepareForNext) {
   armRightS(29);
   armLeftS(60);
 
-  legRightS(25);
+  legRightS(legSideAngle);
   delay(shortMoveMs);
   // now right position
   // one
@@ -682,7 +684,7 @@ void move4(bool prepareForNext) {
   armRightS(60);
   armLeftS(25);
 
-  legLeftS(25);
+  legLeftS(legSideAngle);
   delay(shortMoveMs);
   // now left position
   // two
@@ -704,12 +706,10 @@ void move4(bool prepareForNext) {
   armRightS(29);
   armLeftS(60);
 
-  legRightS(25);
+  legRightS(legSideAngle);
   delay(shortMoveMs);
   // now right position
   // three
-
-  // !!!
 
   armRightS(0);
   armLeftS(30);
@@ -721,7 +721,7 @@ void move4(bool prepareForNext) {
 
   handLeft(0, halfTactMs / 2);
   handRight(40, halfTactMs / 2);
-  legRight(25, halfTactMs / 2);
+  // legRight(25, halfTactMs / 2);
 
   delay(halfTactMs / 2);
   // ...and
@@ -780,8 +780,8 @@ void move4(bool prepareForNext) {
     armRightS(25);
     armLeftS(60);
 
-    legLeftS(25);
-    legRightS(25);
+    legLeftS(legSideAngle);
+    legRightS(legSideAngle);
     delay(shortMoveMs);
   }
 
@@ -951,26 +951,6 @@ void loop() {
   if (buttonState != LOW) {
     return;
   }
-
-  //   legLeft(0, halfTactMs / 2);
-  //   armLeft(0, halfTactMs / 2);
-  //   footLeft(0, halfTactMs / 2);
-  //   footRight(0, halfTactMs / 2);
-  //   handLeft(0, halfTactMs / 2);
-
-  //   delay(halfTactMs - shortMoveMs);
-
-  //   legRightS(35);
-  //   handRightS(0);
-  //   armRightS(110);
-  //   delay(shortMoveMs);
-
-  // move5(false);
-  // move5(true);
-  // move6(false);
-  // move6(true);
-  // return;
-
 
   delay(tactMs * 2 + halfTactMs);
 
