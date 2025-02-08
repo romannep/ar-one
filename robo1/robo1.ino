@@ -952,11 +952,6 @@ void loop() {
     return;
   }
 
-  move5(false);
-  move5(true);
-  move6(false);
-  move6(true);
-  return;
   delay(tactMs * 2 + halfTactMs);
 
   //
